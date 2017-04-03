@@ -1,0 +1,113 @@
+<form method="post" name="myform">
+    <select name="classid" onchange="select()"></select>
+    <select name="suid"></select>
+    <select name="gid"></select>
+</form>
+<script language="javascript">
+<!--
+var arrText = new Array(5);
+var arrValue = new Array(arrText.length);
+
+function objSetOption(select1, select2, select3) {
+    this.select1 = select1;
+    this.select2 = select2;
+    this.select3 = select3;
+}
+
+arrText[0]= new objSetOption("选择1:", "选择2_1:,选择2_2:", "选择3_1:,选择3_2:");
+arrText[1] = new objSetOption("论文:1", "语文:1,数学:2,英语:3", "初中:2,高中:3");
+arrText[2] = new objSetOption("例题:2", "显示b2_1:值b2_1,显示b2_2:值b2_2", "显示b3_1:值b3_1,显示b3_2:值b3_2");
+arrText[3] = new objSetOption("显示c:值c", "显示c2_1:值c2_1,显示c2_2:值c2_2", "显示c3_1:值c3_1,显示c3_2:值c3_2");
+arrText[4] = new objSetOption("显示d:值d", "显示d2_1:值d2_1,显示d2_2:值d2_2", "显示d3_1:值d3_1,显示d3_2:值d3_2");
+arrText[5] = new objSetOption("显示e:值e", "显示e2_1:值e2_1,显示e2_2:值e2_2", "显示e3_1:值e3_1,显示e3_2:值e3_2");
+
+function select(sValue1, sValue2, sValue3) {
+    var eltSelect1 = document.myform.classid;
+    var eltSelect2 = document.myform.suid;
+    var eltSelect3 = document.myform.gid;
+    var arrSelect1, arrSelect2, arrSelect3;
+    var arrData1, arrData2, arrData3;
+    with(eltSelect1) {
+        var strSelect = options[selectedIndex].value;
+    }
+    for(i = 0;i < arrText.length;i ++) {
+        arrSelect1 = arrText[i].select1;
+        arrData1 = arrSelect1.split(":");
+        if (arrData1[1] == strSelect) {
+            arrSelect2 = (arrText[i].select2).split(",");
+            for(j = 0;j < arrSelect2.length;j++) {
+                arrData2 = arrSelect2[j].split(":");
+                with(eltSelect2) {
+                    length = arrSelect2.length;
+                    options[j].text = arrData2[0];
+                    options[j].value = arrData2[1];
+                    if (arrData2[1] == sValue2) {
+                        options[j].selected = true;
+                    }
+                }
+            }
+            arrSelect3 = (arrText[i].select3).split(",");
+            for(j = 0;j < arrSelect3.length;j++) {
+                arrData3 = arrSelect3[j].split(":");
+                with(eltSelect3) {
+                    length = arrSelect3.length;
+                    options[j].text = arrData3[0];
+                    options[j].value = arrData3[1];
+                    if (arrData3[1] == sValue3) {
+                        options[j].selected = true;
+                    }
+                }
+            }
+            break;
+        }
+    }
+}
+
+function init(sValue1, sValue2, sValue3) {
+    var eltSelect1 = document.myform.classid;
+    var eltSelect2 = document.myform.suid;
+    var eltSelect3 = document.myform.gid;
+    var arrSelect1, arrSelect2, arrSelect3;
+    var arrData1, arrData2, arrData3;
+    if (eltSelect1 != undefined && eltSelect2 != undefined && eltSelect3 != undefined) {
+        with(eltSelect2) {
+            arrSelect2 = (arrText[0].select2).split(",");
+            length = arrSelect2.length;
+            for(i = 0;i < length;i ++) {
+                arrData2 = arrSelect2[i].split(":");
+                options[i].text = arrData2[0];
+                options[i].value = arrData2[1];
+            }
+        }
+        with(eltSelect3) {
+            arrSelect3 = (arrText[0].select3).split(",");
+            length = arrSelect3.length;
+            for(i = 0;i < length;i ++) {
+                arrData3 = arrSelect3[i].split(":");
+                options[i].text = arrData3[0];
+                options[i].value = arrData3[1];
+            }
+        }
+        with(eltSelect1) {
+            length = arrText.length;
+            for(i = 0;i < arrText.length;i ++) {
+                arrSelect1 = arrText[i].select1;
+                arrData1 = arrSelect1.split(":");
+                options[i].text = arrData1[0];
+                options[i].value = arrData1[1];
+                if (arrData1[1] == sValue1) {
+                    options[i].selected = true;
+                    select("", sValue2, sValue3);
+                }
+            }
+        }
+    }
+}
+
+//init();
+//默认初始化
+
+init("2", "值b2_1", "值b3_2");
+//更改后默认初始化
+// -->
+</script>

@@ -1,0 +1,116 @@
+<!-- 要实现此效果需要 1 个步骤： -->
+<!-- 第 1 步： -->
+<!-- 把下面的代码加到<BODY></BODY>区域中： -->
+<script language="JavaScript"> 
+<!--
+
+var subcat = new Array(); 
+subcat[0] = new Array('10','1','=1') 
+subcat[1] = new Array('10','2','=2') 
+subcat[2] = new Array('10','3','=3') 
+subcat[3] = new Array('10','4','=4') 
+subcat[4] = new Array('10','5','=5') 
+subcat[5] = new Array('10','6','=6') 
+subcat[6] = new Array('10','7','=7') 
+subcat[7] = new Array('10','8','=8') 
+subcat[8] = new Array('10','9','=9') 
+subcat[9] = new Array('10','10','=10') 
+subcat[10] = new Array('20','11','=11') 
+subcat[11] = new Array('20','12','=12') 
+subcat[12] = new Array('20','13','=13') 
+subcat[13] = new Array('20','14','=14') 
+subcat[14] = new Array('20','15','=15') 
+subcat[15] = new Array('20','16','=16') 
+subcat[16] = new Array('20','17','=17') 
+subcat[17] = new Array('20','18','=18') 
+subcat[18] = new Array('20','19','=19') 
+subcat[19] = new Array('20','20','=20')
+
+function changeselect1(locationid) 
+{ 
+document.form1.s2.length = 0; //清空s2的值
+document.form1.s2.options[0] = new Option('==请选择==',''); 
+for (i=0; i<subcat.length; i++) 
+{ 
+if (subcat[i][0] == locationid) 
+{document.form1.s2.options[document.form1.s2.length] = new Option(subcat[i][1], subcat[i][2]);}
+ //document.form1.s2.length—— s2.option的数目，首次循环为0.
+} 
+} 
+//--> 
+</script>
+
+<form name="form1">
+  二级联动：
+  <select name="s1" onChange="changeselect1(this.value)">
+    <option>==请选择==</option>
+    <option value="10">1-10</option>
+    <option value="20">11-20</option>
+  </select>
+  <select name="s2" onChange="alert(this.value)">
+    <option>==请选择==</option>
+  </select>
+</form>
+<!-- 二级联动 Over -->
+<!-- 三级联动 Start -->
+<script language="JavaScript"> 
+<!--
+
+var subval = new Array(); 
+subval[0] = new Array('10','单数','1','=1') 
+subval[1] = new Array('10','双数','2','=2') 
+subval[2] = new Array('10','单数','3','=3') 
+subval[3] = new Array('10','双数','4','=4') 
+subval[4] = new Array('10','单数','5','=5') 
+subval[5] = new Array('10','双数','6','=6') 
+subval[6] = new Array('10','单数','7','=7') 
+subval[7] = new Array('10','双数','8','=8') 
+subval[8] = new Array('10','单数','9','=9') 
+subval[9] = new Array('10','双数','10','=10') 
+subval[10] = new Array('20','单数','11','=11') 
+subval[11] = new Array('20','双数','12','=12') 
+subval[12] = new Array('20','单数','13','=13') 
+subval[13] = new Array('20','双数','14','=14') 
+subval[14] = new Array('20','单数','15','=15') 
+subval[15] = new Array('20','双数','16','=16') 
+subval[16] = new Array('20','单数','17','=17') 
+subval[17] = new Array('20','双数','18','=18') 
+subval[18] = new Array('20','单数','19','=19') 
+subval[19] = new Array('20','双数','20','=20')
+
+function changeselect2() 
+{ 
+document.form2.s2.length = 0; //清空s2的值
+document.form2.s2.options[0] = new Option('==请选择==',''); 
+document.form2.s2.options[1] = new Option('选择单数','单数'); 
+document.form2.s2.options[2] = new Option('选择双数','双数'); 
+document.form2.s3.length = 0; 
+document.form2.s3.options[0] = new Option('==请选择==',''); 
+}
+
+function changeselect3(sub1,sub2) 
+{ 
+document.form2.s3.length = 0; //清空s3的值
+document.form2.s3.options[0] = new Option('==请选择==',''); 
+for (i=0; i<subval.length; i++) 
+{ 
+if ((subval[i][0] == sub1) & (subval[i][1] == sub2)) 
+{document.form2.s3.options[document.form2.s3.length] = new Option(subval[i][2], subval[i][3]);} 
+} 
+} 
+//--> 
+</script>
+<form name="form2">
+  三级联动：
+  <select name="s1" onChange="changeselect2()">
+    <option>==请选择==</option>
+    <option value="10">1-10</option>
+    <option value="20">11-20</option>
+  </select>
+  <select name="s2" onChange="changeselect3(document.form2.s1.value,this.value)">
+    <option>==请选择==</option>
+  </select>
+  <select name="s3" onChange="alert(this.value)">
+    <option>==请选择==</option>
+  </select>
+</form>
